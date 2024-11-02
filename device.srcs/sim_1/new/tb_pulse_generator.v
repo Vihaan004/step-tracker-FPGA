@@ -19,12 +19,13 @@ module tb_pulse_generator;
         .pulse(pulse)
     );
 
-    // Clock generation (100 MHz)
-    always #5 CLK = ~CLK;  // 10 ns period
+    initial begin
+        CLK = 0;
+        forever #5 CLK = ~CLK;
+    end
 
     initial begin
         // Initialize inputs
-        CLK = 0;
         RST = 0;
         START = 0;
         STOP = 0;
