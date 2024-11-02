@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
-`define WALK_COUNT 15  // 3125000
-`define JOG_COUNT  10  // 1562500
-`define RUN_COUNT  5   // 781250
+`define WALK_COUNT 3125000  // 3125000
+`define JOG_COUNT  1562500  // 1562500
+`define RUN_COUNT  781250   // 781250
 
 
 module pulse_generator(

@@ -14,7 +14,7 @@ module tb_display_driver;
     wire decimal_point;
 
     // Instantiate the display driver
-    display_driver uut (
+    display_driver DUT (
         .CLK(CLK),
         .RST(RST),
         .display_value(display_value),

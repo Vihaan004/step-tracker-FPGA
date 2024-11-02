@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-`define timer 5 // 200000000
+`define timer 200000000 // 200000000
 
 
 module rotation(
@@ -12,12 +12,8 @@ module rotation(
     output reg [1:0] display_type
 );
 
-    // Parameters for 2-second interval (200 million cycles at 100 MHz)
-    // localparam TWO_SEC_COUNT = 200_000_000;
-
-    // Internal counter for timing and state for cycling
     reg [27:0] counter;
-    reg [1:0] display_state; // State to cycle between step count, distance, and mode
+    reg [1:0] display_state;
 
     always @(posedge CLK) begin
 

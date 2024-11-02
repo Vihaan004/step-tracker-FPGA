@@ -5,17 +5,21 @@ module top(
     input START, STOP,
     input [1:0] mode,
     
-    //temp
-    
+    // outputs for testbench
     output START_debounced,
     output STOP_debounced,
     output pulse,
     output [13:0] step_count,
-    output overflow,
     output [11:0] mile,
     output [3:0] mile_tenth,
     output step_count_bcd,
-    output distance_bcd
+    output distance_bcd,
+
+    // actual outputs 
+    output overflow,
+    output [6:0] cathode,
+    output [6:0] anode,
+    output DP
     
     );
     
@@ -39,7 +43,7 @@ module top(
     rotation rotation_1(.CLK(clk100Mhz), .RST(rst), .step_count_bcd(step_count_bcd), .distance_bcd(distance_bcd), .mode(mode), .display_value(display_value), .display_type(display_type));
 
     // 4-digit 7-segment display driver
-    display_driver display_driver_1(.CLK(clk100Mhz), .RST(rst), .display_value(display_value), .display_type(display_type), .segments(segments), .anodes(anodes));
+    display_driver display_driver_1(.CLK(clk100Mhz), .RST(rst), .display_value(display_value), .display_type(display_type), .cathode(cathode), .anode(anode));
     
     
 endmodule
