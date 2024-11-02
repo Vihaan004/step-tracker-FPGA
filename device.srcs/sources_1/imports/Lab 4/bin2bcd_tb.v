@@ -22,7 +22,7 @@ bin2bcd_fsm DUT(clk100Mhz, rst, start, bin, bcd);
 		start = 0;
         rst = 1; #20; rst = 0; #20;
 		start = 1;
-		bin=14'd7850;
+		bin=14'd0320;
 		#700;
 		start = 0;
 		#100;
