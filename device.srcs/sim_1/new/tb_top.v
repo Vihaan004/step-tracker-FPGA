@@ -78,8 +78,8 @@ module tb_top;
         START = 1;
         #10 START = 0;    // START pulse
 
-        #150000 STOP = 1; // STOP after some time
-        #10 STOP = 0;
+//        #150000 STOP = 1; // STOP after some time
+//        #10 STOP = 0;
         
         // End simulation
         $stop;

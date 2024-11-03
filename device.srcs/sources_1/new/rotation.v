@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 
 // `define timer 200000000 // 200000000
-`define timer 30
+`define timer 1000000
 
 
 module rotation(

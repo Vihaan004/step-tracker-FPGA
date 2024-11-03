@@ -4,9 +4,9 @@
 // `define JOG_COUNT 156200    // 1562500
 // `define RUN_COUNT 781250    // 781250
 
-`define WALK_COUNT 15  // 3125000
-`define JOG_COUNT 10    // 1562500
-`define RUN_COUNT 5    // 781250
+`define WALK_COUNT 312500  // 3125000
+`define JOG_COUNT 15620    // 1562500
+`define RUN_COUNT 78125    // 781250
 
 
 module pulse_generator(
