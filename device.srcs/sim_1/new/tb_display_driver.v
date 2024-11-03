@@ -17,6 +17,8 @@ module tb_display_driver;
     wire [3:0] digit3;
     wire [3:0] digit4;
 
+    wire slowCLK;
+
     // Instantiate the display driver
     display_driver DUT (
         .CLK(CLK),
@@ -30,7 +32,8 @@ module tb_display_driver;
         .digit1(digit1),
         .digit2(digit2),
         .digit3(digit3),
-        .digit4(digit4)
+        .digit4(digit4),
+        .slowCLK(slowCLK)
         
     );
 
@@ -45,11 +48,19 @@ module tb_display_driver;
         display_type = 2'b00;
 
         // Release reset
-        #10 RST = 0;
+        #101005 RST = 0;
 
-        display_value = 16'b0001_0010_0011_0100; // Example BCD value for step count
+        display_value = 16'b0001_0010_0011_0100; 
         display_type = 2'b00;
-        #200;
+        #1000000;
+
+        display_value = 16'b0000_0001_0010_0011; 
+        display_type = 2'b01;
+        #1000000;
+
+        display_value = 16'b0000_0000_0001_0010; 
+        display_type = 2'b10;
+        #1000000;
 
         // End simulation
         $stop;

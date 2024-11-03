@@ -4,8 +4,7 @@ module tb_fitbit_tracker;
     reg pulse;
     reg CLK, RST;
     wire [13:0] step_count;
-    wire [11:0] mile;
-    wire [3:0] mile_tenth;
+    wire [13:0] mile;
     wire OFLOW;
 
     fitbit_tracker DUT (
@@ -14,7 +13,6 @@ module tb_fitbit_tracker;
         .RST(RST),
         .step_count(step_count),
         .mile(mile),
-        .mile_tenth(mile_tenth),
         .OFLOW(OFLOW)
     );
 
