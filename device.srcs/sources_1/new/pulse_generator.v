@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 
-// `define WALK_COUNT 3125000  // 3125000
-// `define JOG_COUNT 156200    // 1562500
-// `define RUN_COUNT 781250    // 781250
+`define WALK_COUNT 3125000  // 3125000
+`define JOG_COUNT 156200    // 1562500
+`define RUN_COUNT 781250    // 781250
 
-`define WALK_COUNT 312500  // 3125000
-`define JOG_COUNT 15620    // 1562500
-`define RUN_COUNT 78125    // 781250
+// `define WALK_COUNT 312500  // 3125000
+// `define JOG_COUNT 15620    // 1562500
+// `define RUN_COUNT 78125    // 781250
 
 
 module pulse_generator(
@@ -18,12 +18,12 @@ module pulse_generator(
     output reg pulse
     );
 
-    always @(*) begin
-        if(START)
-            on = 1;
-        else if(STOP)
-            on = 0;
-    end
+//    always @(*) begin
+//        if(START)
+//            on = 1;
+//        else if(STOP)
+//            on = 0;
+//    end
 
     always @(posedge CLK) begin
         
@@ -33,6 +33,11 @@ module pulse_generator(
             counter <= 0;
             on <= 0;
         end
+
+        else if (START)
+            on <= 1;           
+        else if(STOP)
+            on = 0;
 
         else if(on) begin
 

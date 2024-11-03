@@ -3,8 +3,8 @@
 # SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
 # IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
 # SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
-# Start of session at: Sat Nov  2 16:42:28 2024
-# Process ID: 9560
+# Start of session at: Sun Nov  3 16:50:15 2024
+# Process ID: 24228
 # Current directory: C:/Users/VIHAAN/Vivado/device/device.runs/synth_1
 # Command line: vivado.exe -log top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source top.tcl
 # Log file: C:/Users/VIHAAN/Vivado/device/device.runs/synth_1/top.vds
@@ -17,8 +17,8 @@
 # CPU Physical cores:8
 # CPU Logical cores :16
 # Host memory       :16542 MB
-# Swap memory       :9126 MB
-# Total Virtual     :25669 MB
-# Available Virtual :5760 MB
+# Swap memory       :8053 MB
+# Total Virtual     :24595 MB
+# Available Virtual :10624 MB
 #-----------------------------------------------------------
 source top.tcl -notrace

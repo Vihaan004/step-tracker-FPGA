@@ -6,15 +6,15 @@ module top(
     input [1:0] mode,
     
     // outputs for testbench
-    output START_debounced,
-    output STOP_debounced,
-    output pulse,
-    output [13:0] step_count,
-    output [13:0] mile,
-    output [15:0] step_count_bcd,
-    output [15:0] distance_bcd,
-    output [15:0] display_value,
-    output [1:0] display_type,
+    // output START_debounced,
+    // output STOP_debounced,
+    // output pulse,
+    // output [13:0] step_count,
+    // output [13:0] mile,
+    // output [15:0] step_count_bcd,
+    // output [15:0] distance_bcd,
+    // output [15:0] display_value,
+    // output [1:0] display_type,
 
     // actual outputs 
     output overflow,
@@ -25,16 +25,29 @@ module top(
     // output reg pulse_delayed,
     // output wire start_step_conversion, start_distance_conversion
     );
+
+    wire START_debounced;
+    wire STOP_debounced;
+    wire pulse;
+    wire [13:0] step_count;
+    wire [13:0] mile;
+    wire [15:0] step_count_bcd;
+    wire [15:0] distance_bcd;
+    wire [15:0] display_value;
+    wire [1:0] display_type;
+    
+    
+    // wire overflow;
     
 
     debouncer debounce_START(.clk100Mhz(clk100Mhz), .rst(rst), .i_sig(START), .o_sig_debounced(START_debounced));
     debouncer debounce_STOP(.clk100Mhz(clk100Mhz), .rst(rst), .i_sig(STOP), .o_sig_debounced(STOP_debounced));
 
     
-    // pulse_generator generate_pulse(.START(START_debounced), .STOP(STOP_debounced), .CLK(clk100Mhz), .RST(rst), .MODE(mode), .pulse(pulse));
+    pulse_generator generate_pulse(.START(START_debounced), .STOP(STOP_debounced), .CLK(clk100Mhz), .RST(rst), .MODE(mode), .pulse(pulse));
     
     // for testing without debouncer
-    pulse_generator generate_pulse_test(.START(START), .STOP(STOP), .CLK(clk100Mhz), .RST(rst), .MODE(mode), .pulse(pulse));
+    //  pulse_generator generate_pulse_test(.START(START), .STOP(STOP), .CLK(clk100Mhz), .RST(rst), .MODE(mode), .pulse(pulse));
     
     fitbit_tracker tracker(.CLK(clk100Mhz), .RST(rst), .pulse(pulse), .step_count(step_count), .mile(mile), .OFLOW(overflow));
     
@@ -61,7 +74,7 @@ module top(
     rotation rotation_1(.CLK(clk100Mhz), .RST(rst), .step_count_bcd(step_count_bcd), .distance_bcd(distance_bcd), .mode(mode), .display_value(display_value), .display_type(display_type));
 
     // 4-digit 7-segment display driver
-    display_driver display_driver_1(.CLK(clk100Mhz), .RST(rst), .display_value(display_value), .display_type(display_type), .cathode(cathode), .anode(anode));
+    display_driver display_driver_1(.CLK(clk100Mhz), .RST(rst), .display_value(display_value), .display_type(display_type), .cathode(cathode), .anode(anode), .DP(DP));
     
     
 endmodule

@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-// `define DIVIDER 5000 // 1 Khz
+// `define DIVIDER 50000 // 1 Khz
 
 module display_driver(
     input wire CLK, RST,
@@ -28,19 +28,10 @@ module display_driver(
     );
 
 
-    always @(posedge CLK) begin
-        
-        if(RST) begin
-            cathode <= 7'b0000000;
-            anode <= 4'b1111;
-            DP <= 1'b0;
+    always @(posedge slowCLK or posedge RST) begin
+        if (RST)
             refresh_counter <= 0;
-        end
-    end
-
-    always @(posedge slowCLK) begin
-        
-        if(refresh_counter == 3)
+        else if (refresh_counter == 3)
             refresh_counter <= 0;
         else
             refresh_counter <= refresh_counter + 1;
@@ -55,74 +46,38 @@ module display_driver(
 
     always @(*) begin
 
+        if(RST) begin
+            cathode = 7'b0000000;
+            anode = 4'b1111;
+            DP = 0;;
+        end
+
         case (refresh_counter)
                 2'b00: begin
-                    anode <= 4'b0111;
-                    cathode <= segments(digit1);
-                    DP <= 1'b1; // no decimal
+                    anode = 4'b0111;
+                    cathode = segments(digit1);
+                    DP = 0; // no decimal
                 end
                 2'b01: begin
-                    anode <= 4'b1011;
-                    cathode <= segments(digit2);
-                    DP <= 1'b1; // no decimal
+                    anode = 4'b1011;
+                    cathode = segments(digit2);
+                    DP = 0; // no decimal
                 end
                 2'b10: begin
-                    anode <= 4'b1101;
-                    cathode <= segments(digit3);
-                    DP <= (display_type == 2'b01) ? 1'b0 : 1'b1;
+                    anode = 4'b1101;
+                    cathode = segments(digit3);
+                    DP = (display_type == 2'b01) ? 1 : 0;
                 end
                 2'b11: begin
-                    anode <= 4'b1110; 
-                    cathode <= segments(digit4);
-                    DP <= 1'b1; // no decimal
+                    anode = 4'b1110; 
+                    cathode = segments(digit4);
+                    DP = 0; // no decimal
                 end
             endcase
         
     end
 
 
-
-
-
-    // always @(posedge CLK) begin // CHANGE to SLOWCLK
-        
-    //     if (RST) begin
-    //         current_digit <= 0;
-    //         anode <= 4'b1111;
-    //         DP <= 1'b0;
-    //     end 
-        
-    //     else begin
-
-    //         if (current_digit == 3)
-    //             current_digit <= 0;
-    //         else
-    //             current_digit <= current_digit + 1;
-
-    //         case (current_digit)
-    //             2'b00: begin
-    //                 anode <= 4'b0111;
-    //                 cathode <= segments(digit1);
-    //                 DP <= 1'b1; // no decimal
-    //             end
-    //             2'b01: begin
-    //                 anode <= 4'b1011;
-    //                 cathode <= segments(digit2);
-    //                 DP <= 1'b1; // no decimal
-    //             end
-    //             2'b10: begin
-    //                 anode <= 4'b1101;
-    //                 cathode <= segments(digit3);
-    //                 DP <= (display_type == 2'b01) ? 1'b0 : 1'b1;
-    //             end
-    //             2'b11: begin
-    //                 anode <= 4'b1110; 
-    //                 cathode <= segments(digit4);
-    //                 DP <= 1'b1; // no decimal
-    //             end
-    //         endcase
-    //     end
-    // end
     
     function [6:0] segments;
         input [3:0] bcd;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Sat Nov  2 16:44:41 2024
+| Date         : Sun Nov  3 16:52:00 2024
 | Host         : Vihaan-FlowX13 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    10 |
-|    Minimum number of control sets                        |    10 |
+| Total control sets                                       |    25 |
+|    Minimum number of control sets                        |    25 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    48 |
+| Unused register locations in slices containing registers |    82 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    10 |
-| >= 0 to < 4        |     5 |
-| >= 4 to < 6        |     3 |
+| Total control sets |    25 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |    12 |
 | >= 6 to < 8        |     0 |
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     0 |
-| >= 16              |     2 |
+| >= 14 to < 16      |     5 |
+| >= 16              |     5 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,31 +58,46 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               3 |            2 |
-| No           | No                    | Yes                    |              29 |            7 |
-| No           | Yes                   | No                     |              50 |           14 |
-| Yes          | No                    | No                     |               4 |            2 |
+| No           | No                    | No                     |               1 |            1 |
+| No           | No                    | Yes                    |              31 |            8 |
+| No           | Yes                   | No                     |              71 |           24 |
+| Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               2 |            2 |
+| Yes          | Yes                   | No                     |             175 |           50 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------------------+-------------------------------------+----------------------------------------+------------------+----------------+--------------+
-|            Clock Signal           |            Enable Signal            |            Set/Reset Signal            | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------------------------+-------------------------------------+----------------------------------------+------------------+----------------+--------------+
-|  clk100Mhz_IBUF_BUFG              |                                     |                                        |                1 |              1 |         1.00 |
-|  clk100Mhz_IBUF_BUFG              | debounce_START/p_0_in               | rst_IBUF                               |                1 |              1 |         1.00 |
-|  clk100Mhz_IBUF_BUFG              | debounce_STOP/counter_rg_reg[3]     | rst_IBUF                               |                1 |              1 |         1.00 |
-|  display_driver_1/divider/slowClk |                                     |                                        |                1 |              2 |         2.00 |
-|  display_driver_1/divider/slowClk |                                     | rst_IBUF                               |                1 |              3 |         3.00 |
-|  clk100Mhz_IBUF_BUFG              |                                     | debounce_START/counter_rg[3]_i_1_n_0   |                1 |              4 |         4.00 |
-|  clk100Mhz_IBUF_BUFG              |                                     | debounce_STOP/counter_rg[3]_i_1__0_n_0 |                1 |              4 |         4.00 |
-|  display_driver_1/divider/slowClk | display_driver_1/cathode[0]_i_1_n_0 |                                        |                2 |              4 |         2.00 |
-|  clk100Mhz_IBUF_BUFG              |                                     | rotation_1/counter[0]_i_1_n_0          |                7 |             28 |         4.00 |
-|  clk100Mhz_IBUF_BUFG              |                                     | rst_IBUF                               |               11 |             40 |         3.64 |
-+-----------------------------------+-------------------------------------+----------------------------------------+------------------+----------------+--------------+
++-------------------------------+-----------------------------------------+----------------------------------------+------------------+----------------+--------------+
+|          Clock Signal         |              Enable Signal              |            Set/Reset Signal            | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------------+-----------------------------------------+----------------------------------------+------------------+----------------+--------------+
+|  clk100Mhz_IBUF_BUFG          |                                         |                                        |                1 |              1 |         1.00 |
+|  clk100Mhz_IBUF_BUFG          | generate_pulse/OFLOW0_out               | rst_IBUF                               |                1 |              1 |         1.00 |
+|  display_driver_1/divider/CLK |                                         | rst_IBUF                               |                1 |              2 |         2.00 |
+|  clk100Mhz_IBUF_BUFG          |                                         | debounce_START/counter_rg[3]_i_1_n_0   |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          |                                         | debounce_STOP/counter_rg[3]_i_1__0_n_0 |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/counter              | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[15]_i_1__0_n_0 | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[3]_i_1__0_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[11]_i_1__0_n_0 | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[7]_i_1__0_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[11]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[3]_i_1_n_0   | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[15]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[7]_i_1_n_0   | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/counter            | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | tracker/mile[0]_i_1_n_0                 | rst_IBUF                               |                4 |             14 |         3.50 |
+|  clk100Mhz_IBUF_BUFG          | generate_pulse/pulse_reg_1              | rst_IBUF                               |                4 |             14 |         3.50 |
+|  clk100Mhz_IBUF_BUFG          | generate_pulse/pulse_reg_0              | rst_IBUF                               |                4 |             14 |         3.50 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/r_bin[13]_i_1__0_n_0 | rst_IBUF                               |                3 |             14 |         4.67 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/r_bin[13]_i_1_n_0  | rst_IBUF                               |                3 |             14 |         4.67 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/bcd[15]_i_1__0_n_0   | rst_IBUF                               |                3 |             16 |         5.33 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/bcd[15]_i_1_n_0    | rst_IBUF                               |                3 |             16 |         5.33 |
+|  clk100Mhz_IBUF_BUFG          |                                         | rotation_1/counter[0]_i_1_n_0          |                7 |             28 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | debounce_START/E[0]                     | generate_pulse/counter[31]_i_1_n_0     |               15 |             32 |         2.13 |
+|  clk100Mhz_IBUF_BUFG          |                                         | rst_IBUF                               |               22 |             64 |         2.91 |
++-------------------------------+-----------------------------------------+----------------------------------------+------------------+----------------+--------------+
 
 

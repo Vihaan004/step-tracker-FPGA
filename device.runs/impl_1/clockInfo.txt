@@ -1,6 +1,6 @@
 -------------------------------------
 | Tool Version : Vivado v.2024.1
-| Date         : Sat Nov  2 16:44:40 2024
+| Date         : Sun Nov  3 16:51:57 2024
 | Host         : Vihaan-FlowX13
 | Design       : design_1
 | Device       : xc7a100t-csg324-1--

@@ -56,7 +56,7 @@ if {$::dispatch::connected} {
 }
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_msg_config -id {Common 17-41} -limit 10000000
+set_param chipscope.maxJobs 4
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -96,6 +96,8 @@ read_xdc {{C:/Users/VIHAAN/Vivado/device/device.srcs/constrs_1/imports/Lab 4/Nex
 set_property used_in_implementation false [get_files {{C:/Users/VIHAAN/Vivado/device/device.srcs/constrs_1/imports/Lab 4/Nexys-A7-100T-Master.xdc}}]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental C:/Users/VIHAAN/Vivado/device/device.srcs/utils_1/imports/synth_1/top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
