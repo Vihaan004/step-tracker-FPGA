@@ -1,19 +1,29 @@
 `timescale 1ns / 1ps
 
 module tb_top;
+
+
     reg clk100Mhz, rst;
     reg START, STOP;
     reg [1:0] mode;
-    wire overflow;
     
     //temp
-    wire pulse;
-    wire [13:0] step_count;
-    wire [3:0] mile;
-    wire half_mile;
-    wire START_debounced;
-    wire STOP_debounced;
+     wire pulse;
+     wire [13:0] step_count;
+     wire [11:0] mile;
+     wire [3:0] mile_tenth;
+     wire [15:0] step_count_bcd;
+     wire [15:0] distance_bcd;
+    // wire START_debounced;
+    // wire STOP_debounced;
 
+    wire overflow;
+    wire [6:0] cathode;
+    wire [3:0] anode;
+    wire DP;
+
+    wire pulse_delayed;
+    wire start_step_conversion, start_distance_conversion;
 
     top DUT (
         .clk100Mhz(clk100Mhz),
@@ -22,12 +32,22 @@ module tb_top;
         .STOP(STOP),
         .mode(mode),
         .overflow(overflow),
+        .cathode(cathode),
+        .anode(anode),
+        .DP(DP),
+
         .pulse(pulse),
         .step_count(step_count),
         .mile(mile),
-        .half_mile(half_mile),
-        .START_debounced(START_debounced),
-        .STOP_debounced(STOP_debounced)
+        .mile_tenth(mile_tenth),
+        .step_count_bcd(step_count_bcd),
+        .distance_bcd(distance_bcd),
+        .pulse_delayed(pulse_delayed),
+        .start_step_conversion(start_step_conversion),
+        .start_distance_conversion(start_distance_conversion)
+        // .START_debounced(START_debounced),
+        // .STOP_debounced(STOP_debounced)
+
     );
 
 
@@ -37,7 +57,7 @@ module tb_top;
     end
 
     initial begin
-
+    
         // Initialize inputs
         rst = 0;
         START = 0;
@@ -49,36 +69,14 @@ module tb_top;
         #20;
         rst = 0;
 
-        // // Test Walk mode (32 pulses/sec)
-        // mode = 2'b00;
-        // START = 1;
-        // #10 START = 0;    // START pulse
-        // #200 STOP = 1; // STOP after some time
-        // #10 STOP = 0;
-        
-        // #30;
-
-        // // Test Jog mode (64 pulses/sec)
-        // mode = 2'b01;
-        // START = 1;
-        // #10 START = 0;    // START pulse
-        // #200 STOP = 1; // STOP after some time
-        // #10 STOP = 0;
-
-        // Test Run mode (128 pulses/sec)
+        // Test Run mode 
         mode = 2'b10;
         START = 1;
-        #100 START = 0;    // START pulse
-        #50000  
-        STOP = 1; // STOP after some time
-        #100 STOP = 0;
+        #10 START = 0;    // START pulse
 
-        // Test Off mode (no pulses)
-        mode = 2'b11;
-        START = 1;
-        #100 START = 0;    // START pulse
-        #500 STOP = 1; // STOP after some time
-        #100 STOP = 0;
+        #20000 STOP = 1; // STOP after some time
+        #10 STOP = 0;
+        
         // End simulation
         $stop;
 

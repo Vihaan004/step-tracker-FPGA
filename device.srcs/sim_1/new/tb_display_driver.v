@@ -3,15 +3,19 @@
 module tb_display_driver;
 
     // Inputs
-    reg CLK;
-    reg RST;
+    reg CLK, RST;
     reg [15:0] display_value;
     reg [1:0] display_type;
 
     // Outputs
-    wire [6:0] segments;
-    wire [3:0] anodes;
-    wire decimal_point;
+    wire [6:0] cathode;
+    wire [3:0] anode;
+    wire DP;
+    wire [1:0] current_digit;
+    wire [3:0] digit1;
+    wire [3:0] digit2;
+    wire [3:0] digit3;
+    wire [3:0] digit4;
 
     // Instantiate the display driver
     display_driver DUT (
@@ -19,9 +23,15 @@ module tb_display_driver;
         .RST(RST),
         .display_value(display_value),
         .display_type(display_type),
-        .segments(segments),
-        .anodes(anodes),
-        .decimal_point(decimal_point)
+        .cathode(cathode),
+        .anode(anode),
+        .DP(DP),
+        .current_digit(current_digit),
+        .digit1(digit1),
+        .digit2(digit2),
+        .digit3(digit3),
+        .digit4(digit4)
+        
     );
 
     // Clock generation (100 MHz)
@@ -31,31 +41,15 @@ module tb_display_driver;
         // Initialize inputs
         CLK = 0;
         RST = 1;
-        display_value = 16'h1234;
+        display_value = 16'd0000;
         display_type = 2'b00;
 
         // Release reset
         #10 RST = 0;
 
-        // Test display_type = 2'b00 (Step Count - Show all four digits)
-        display_value = 16'h1234; // Example BCD value for step count
+        display_value = 16'b0001_0010_0011_0100; // Example BCD value for step count
         display_type = 2'b00;
-        #100000;  // Wait some time to observe behavior
-
-        // Test display_type = 2'b01 (Distance - Show last two digits with decimal point)
-        display_value = 16'h0456; // Example BCD value for distance (4.5 miles)
-        display_type = 2'b01;
-        #100000;  // Wait some time to observe behavior
-
-        // Test display_type = 2'b10 (Mode - Show last two digits without decimal point)
-        display_value = 16'h0002; // Example BCD value for mode (Mode 2)
-        display_type = 2'b10;
-        #100000;  // Wait some time to observe behavior
-
-        // Test Reset
-        RST = 1;
-        #10 RST = 0;
-        #100000;
+        #200;
 
         // End simulation
         $stop;

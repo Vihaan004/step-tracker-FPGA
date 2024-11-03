@@ -35,9 +35,9 @@ initial begin
     #20;
     RST = 0;
 
-    step_count_bcd = 16'b000000110010000; // 0320
-    distance_bcd = 16'b0000000000010000; // 1.0
-    mode = 00;
+    step_count_bcd = 16'b0000_0011_0010_0000; // 0320
+    distance_bcd = 16'b0000_0000_0001_0000; // 1.0
+    mode = 01;
 
     #1000;
 

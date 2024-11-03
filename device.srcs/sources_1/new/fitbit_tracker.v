@@ -3,7 +3,8 @@
 module fitbit_tracker(
     input CLK, RST,
     input pulse,
-    output reg [15:0] step_count, // max 40960
+    output reg [13:0] step_count,
+    output reg [15:0] total_steps, // max 40960
     output reg [11:0] mile,
     output reg [3:0] mile_tenth,
     output reg OFLOW
@@ -20,22 +21,25 @@ module fitbit_tracker(
         
         if (RST) begin
             step_count <= 0;
+            total_steps <= 0;
             mile <= 0;
             OFLOW <= 0;
         end
 
         else if (pulse) begin
 
-            if(step_count < 15'd40960) begin
-                step_count <= step_count + 1;
+            if(total_steps < 15'd40960) begin
+                total_steps <= total_steps + 1;
             end
             
 
-            if (step_count >= 9999) begin
+            if (total_steps > 9999) begin
                 OFLOW <= 1;
+            end else begin
+                step_count <= step_count + 1;
             end
 
-            if (step_count % 2048 == 0 && step_count != 0) begin // use 2048
+            if (total_steps % 10 == 0 && total_steps != 0) begin // CHANGE to 2048
 
                 mile_tenth <= mile_tenth + 5;
                 if(mile_tenth == 5) begin
