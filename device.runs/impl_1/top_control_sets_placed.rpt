@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date         : Sun Nov  3 16:52:00 2024
+| Date         : Sun Nov  3 18:06:49 2024
 | Host         : Vihaan-FlowX13 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    25 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    82 |
+| Unused register locations in slices containing registers |    80 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -46,8 +46,8 @@ Table of Contents
 | >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     5 |
-| >= 16              |     5 |
+| >= 14 to < 16      |     4 |
+| >= 16              |     6 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -60,10 +60,10 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               1 |            1 |
 | No           | No                    | Yes                    |              31 |            8 |
-| No           | Yes                   | No                     |              71 |           24 |
+| No           | Yes                   | No                     |              71 |           22 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             175 |           50 |
+| Yes          | Yes                   | No                     |             177 |           52 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
@@ -80,24 +80,24 @@ Table of Contents
 |  clk100Mhz_IBUF_BUFG          |                                         | debounce_STOP/counter_rg[3]_i_1__0_n_0 |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | distance_converter/counter              | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[15]_i_1__0_n_0 | rst_IBUF                               |                1 |              4 |         4.00 |
-|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[3]_i_1__0_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[11]_i_1__0_n_0 | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[7]_i_1__0_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
-|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[11]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/w_bcd[3]_i_1__0_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[3]_i_1_n_0   | rst_IBUF                               |                1 |              4 |         4.00 |
-|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[15]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[7]_i_1_n_0   | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[15]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/w_bcd[11]_i_1_n_0  | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | step_count_converter/counter            | rst_IBUF                               |                1 |              4 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | tracker/mile[0]_i_1_n_0                 | rst_IBUF                               |                4 |             14 |         3.50 |
-|  clk100Mhz_IBUF_BUFG          | generate_pulse/pulse_reg_1              | rst_IBUF                               |                4 |             14 |         3.50 |
 |  clk100Mhz_IBUF_BUFG          | generate_pulse/pulse_reg_0              | rst_IBUF                               |                4 |             14 |         3.50 |
-|  clk100Mhz_IBUF_BUFG          | distance_converter/r_bin[13]_i_1__0_n_0 | rst_IBUF                               |                3 |             14 |         4.67 |
-|  clk100Mhz_IBUF_BUFG          | step_count_converter/r_bin[13]_i_1_n_0  | rst_IBUF                               |                3 |             14 |         4.67 |
-|  clk100Mhz_IBUF_BUFG          | distance_converter/bcd[15]_i_1__0_n_0   | rst_IBUF                               |                3 |             16 |         5.33 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/r_bin[13]_i_1__0_n_0 | rst_IBUF                               |                2 |             14 |         7.00 |
+|  clk100Mhz_IBUF_BUFG          | step_count_converter/r_bin[13]_i_1_n_0  | rst_IBUF                               |                2 |             14 |         7.00 |
+|  clk100Mhz_IBUF_BUFG          | tracker/total_steps[0]_i_1_n_0          | rst_IBUF                               |                4 |             16 |         4.00 |
+|  clk100Mhz_IBUF_BUFG          | distance_converter/bcd[15]_i_1__0_n_0   | rst_IBUF                               |                4 |             16 |         4.00 |
 |  clk100Mhz_IBUF_BUFG          | step_count_converter/bcd[15]_i_1_n_0    | rst_IBUF                               |                3 |             16 |         5.33 |
 |  clk100Mhz_IBUF_BUFG          |                                         | rotation_1/counter[0]_i_1_n_0          |                7 |             28 |         4.00 |
-|  clk100Mhz_IBUF_BUFG          | debounce_START/E[0]                     | generate_pulse/counter[31]_i_1_n_0     |               15 |             32 |         2.13 |
-|  clk100Mhz_IBUF_BUFG          |                                         | rst_IBUF                               |               22 |             64 |         2.91 |
+|  clk100Mhz_IBUF_BUFG          | debounce_START/E[0]                     | generate_pulse/counter[31]_i_1_n_0     |               18 |             32 |         1.78 |
+|  clk100Mhz_IBUF_BUFG          |                                         | rst_IBUF                               |               20 |             64 |         3.20 |
 +-------------------------------+-----------------------------------------+----------------------------------------+------------------+----------------+--------------+
 
 

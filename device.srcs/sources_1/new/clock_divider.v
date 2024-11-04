@@ -37,7 +37,7 @@ module complexDivider(clk100Mhz, slowClk, clr);
 	  counter <= 0;
       slowClk <= 0;
 	end
-    else if(counter == 5000) begin // 1 KHz - 50000
+    else if(counter == 50000) begin // 1 KHz - 50000
       counter <= 1;
       slowClk <= ~slowClk;
     end

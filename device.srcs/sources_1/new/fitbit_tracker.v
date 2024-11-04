@@ -9,12 +9,6 @@ module fitbit_tracker(
     output reg OFLOW
     );
 
-    initial begin
-        step_count = 0;
-        mile = 0;
-        OFLOW = 0;
-    end
-
     always @(posedge CLK) begin
         
         if (RST) begin
@@ -27,16 +21,16 @@ module fitbit_tracker(
         else if (pulse) begin
 
 
-
-            if(total_steps < 15'd40960) begin
+            if(total_steps < 16'b1010000000000000) begin
                 total_steps <= total_steps + 1;
                 
                 if (total_steps % 2048 == 0 && total_steps != 0) begin // CHANGE to 2048
                     mile <= mile + 5;
                 end
+
             end
 
-            if (total_steps < 9999) begin
+            if (total_steps < 16'b0010011100001111) begin
                 step_count <= step_count + 1;
             end else begin
                 OFLOW <= 1;

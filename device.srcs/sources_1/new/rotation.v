@@ -37,7 +37,7 @@ module rotation(
                         display_type <= 2'b01;
                     end
                     2'b10: begin
-                        display_value <= {14'b0, mode};
+                        display_value <= {14'b0, mode[1], mode[0]};
                         display_type <= 2'b10;
                     end
                     default: begin

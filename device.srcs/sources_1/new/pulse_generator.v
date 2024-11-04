@@ -48,13 +48,13 @@ module pulse_generator(
                             counter <= 1;
                             pulse <= ~pulse;
                         end
-                2'b01:  if(counter < `JOG_COUNT) begin
+                2'b10:  if(counter < `JOG_COUNT) begin
                             counter <= counter + 1;
                         end else begin 
                             counter <= 1;
                             pulse <= ~pulse;
                         end
-                2'b10:  if(counter < `RUN_COUNT) begin
+                2'b01:  if(counter < `RUN_COUNT) begin
                             counter <= counter + 1;
                         end else begin 
                             counter <= 1;

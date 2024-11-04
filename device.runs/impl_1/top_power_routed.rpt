@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.1 (win64) Build 5076996 Wed May 22 18:37:14 MDT 2024
-| Date             : Sun Nov  3 16:52:34 2024
+| Date             : Sun Nov  3 18:07:23 2024
 | Host             : Vihaan-FlowX13 running 64-bit major release  (build 9200)
 | Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
 | Design           : top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.123        |
+| Total On-Chip Power (W)  | 0.124        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.026        |
+| Dynamic (W)              | 0.027        |
 | Device Static (W)        | 0.097        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.4         |
@@ -52,17 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.002 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |      596 |       --- |             --- |
-|   LUT as Logic |    <0.001 |      201 |     63400 |            0.32 |
+| Clocks         |     0.001 |        3 |       --- |             --- |
+| Slice Logic    |    <0.001 |      599 |       --- |             --- |
+|   LUT as Logic |    <0.001 |      203 |     63400 |            0.32 |
 |   CARRY4       |    <0.001 |       34 |     15850 |            0.21 |
-|   Register     |    <0.001 |      278 |    126800 |            0.22 |
+|   Register     |    <0.001 |      280 |    126800 |            0.22 |
 |   F7/F8 Muxes  |    <0.001 |        7 |     63400 |            0.01 |
 |   Others       |     0.000 |       13 |       --- |             --- |
-| Signals        |    <0.001 |      457 |       --- |             --- |
-| I/O            |     0.023 |       19 |       210 |            9.05 |
+| Signals        |     0.001 |      459 |       --- |             --- |
+| I/O            |     0.024 |       19 |       210 |            9.05 |
 | Static Power   |     0.097 |          |           |                 |
-| Total          |     0.123 |          |           |                 |
+| Total          |     0.124 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Vccint    |       1.000 |     0.018 |       0.003 |      0.015 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.019 |       0.001 |      0.018 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.010 |       0.006 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.011 |       0.007 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,7 +141,7 @@ Table of Contents
 +------+-----------+
 | Name | Power (W) |
 +------+-----------+
-| top  |     0.026 |
+| top  |     0.027 |
 +------+-----------+
 
 
